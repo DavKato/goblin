@@ -1,0 +1,72 @@
+html {
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+}
+* {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  font-feature-settings: 'palt';
+}
+main {
+  display: block;
+}
+h1 {
+  font-size: 2em;
+}
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+b,
+strong {
+  font-weight: bolder;
+}
+img {
+  border-style: none;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+button,
+input {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+  cursor: pointer;
+}
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  border-style: none;
+}
+textarea {
+  overflow: auto;
+}
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+dd,
+dt {
+  margin: 0;
+}
+h1,
+h2,
+p {
+  margin: 0;
+}
+li {
+  list-style: none;
+}

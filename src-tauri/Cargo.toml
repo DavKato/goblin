@@ -1,0 +1,37 @@
+[package]
+name = "Goblin"
+version = "0.1.0"
+description = "Local CMS for Goblin"
+authors = [ "Davide Kato" ]
+license = ""
+repository = ""
+default-run = "goblin"
+edition = "2018"
+build = "src/build.rs"
+
+[package.metadata.bundle]
+identifier = "com.tauri.dev"
+icon = [
+  "icons/32x32.png",
+  "icons/128x128.png",
+  "icons/128x128@2x.png",
+  "icons/icon.icns",
+  "icons/icon.ico"
+]
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = [ "derive" ] }
+tauri = { version = "0.4", features = [ "all-api", "edge" ] }
+
+[target."cfg(windows)".build-dependencies]
+winres = "0.1"
+
+[features]
+dev-server = [ "tauri/dev-server" ]
+embedded-server = [ "tauri/embedded-server" ]
+no-server = [ "tauri/no-server" ]
+
+[[bin]]
+name = "goblin"
+path = "src/main.rs"

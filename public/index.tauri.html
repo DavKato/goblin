@@ -1,17 +1,10 @@
 <!DOCTYPE html><html lang="en"><head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-
-	<title>Svelte app</title>
-
-	<link rel="icon" type="image/png" href="/favicon.png">
-	<link rel="stylesheet" href="/global.css">
-	<link rel="stylesheet" href="/build/bundle.css">
-
-	<script defer="" src="/build/bundle.js"></script>
-<meta http-equiv="Content-Security-Policy" content="default-src blob: data: filesystem: ws: http: https: 'unsafe-eval' 'unsafe-inline'"></head>
-
-<body><script>/* eslint-disable */
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/global.css">
+    <link rel="stylesheet" href="/build/bundle.css">
+    <script defer="" src="/build/bundle.js"></script>
+  <meta http-equiv="Content-Security-Policy" content="default-src blob: data: filesystem: ws: http: https: 'unsafe-eval' 'unsafe-inline'"></head>
+  <body><script>/* eslint-disable */
 
 /**
  *  * THIS FILE IS GENERATED AUTOMATICALLY.
@@ -85,6 +78,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+/**
+ * @typedef {number} BaseDirectory
+ */
+/**
+ * @enum {BaseDirectory}
+ */
+var Dir = {
+  Audio: 1,
+  Cache: 2,
+  Config: 3, 
+  Data: 4,
+  LocalData: 5,
+  Desktop: 6,
+  Document: 7,
+  Download: 8,
+  Executable: 9,
+  Font: 10,
+  Home: 11,
+  Picture: 12,
+  Public: 13,
+  Runtime: 14,
+  Template: 15,
+  Video: 16,
+  Resource: 17,
+  App: 18
+}
+
 
 
 
@@ -95,6 +115,7 @@ var __reject = function () {
 }
 
 window.tauri = {
+  Dir: Dir,
   
   invoke: function invoke(args) {
     window.external.invoke(JSON.stringify(args));
@@ -119,7 +140,7 @@ window.tauri = {
       this.invoke({
         cmd: 'emit',
         event: evt,
-        payload: payload || ''
+        payload: payload
       });
     
   },
@@ -153,55 +174,106 @@ window.tauri = {
   },
 
   
-  readTextFile: function readTextFile(path) {
+  readTextFile: function readTextFile(path, options) {
     
       return this.promisified({
         cmd: 'readTextFile',
-        path: path
+        path: path,
+        options: options
       });
     
   },
 
   
-  readBinaryFile: function readBinaryFile(path) {
+  readBinaryFile: function readBinaryFile(path, options) {
     
       return this.promisified({
         cmd: 'readBinaryFile',
-        path: path
+        path: path,
+        options: options
       });
     
   },
 
   
-  writeFile: function writeFile(cfg) {
+  writeFile: function writeFile(cfg, options) {
     
       if (_typeof(cfg) === 'object') {
         Object.freeze(cfg);
       }
-      this.invoke({
+      return this.promisified({
         cmd: 'writeFile',
         file: cfg.file,
-        contents: cfg.contents
+        contents: cfg.contents,
+        options: options
       });
     
   },
 
   
-  listFiles: function listFiles(path) {
+  readDir: function readDir(path, options) {
     
       return this.promisified({
-        cmd: 'listFiles',
-        path: path
+        cmd: 'readDir',
+        path: path,
+        options: options
       });
     
   },
 
   
-  listDirs: function listDirs(path) {
+  createDir: function createDir(path, options) {
     
       return this.promisified({
-        cmd: 'listDirs',
-        path: path
+        cmd: 'createDir',
+        path: path,
+        options: options
+      });
+    
+  },
+
+  
+  removeDir: function removeDir(path, options) {
+    
+      return this.promisified({
+        cmd: 'removeDir',
+        path: path,
+        options: options
+      });
+    
+  },
+
+  
+  copyFile: function copyFile(source, destination, options) {
+    
+      return this.promisified({
+        cmd: 'copyFile',
+        source: source,
+        destination: destination,
+        options: options
+      });
+    
+  },
+
+  
+  removeFile: function removeFile(path, options) {
+    
+      return this.promisified({
+        cmd: 'removeFile',
+        path: path,
+        options: options
+      });
+    
+  },
+
+  
+  renameFile: function renameFile(oldPath, newPath, options) {
+    
+      return this.promisified({
+        cmd: 'renameFile',
+        old_path: oldPath,
+        new_path: newPath,
+        options: options
       });
     
   },
@@ -242,18 +314,33 @@ window.tauri = {
     
   },
 
-bridge: function bridge(command, payload) {
+  
+  openDialog: function openDialog(options) {
     
+      var opts = options || {}
+      if (_typeof(options) === 'object') {
+        opts.default_path = opts.defaultPath
+        Object.freeze(options);
+      }
+      return this.promisified({
+        cmd: 'openDialog',
+        options: opts
+      });
+    
+  },
 
-    if (_typeof(payload) === 'object') {
-      Object.freeze(payload);
-    }
-
-    return this.promisified({
-      cmd: 'bridge',
-      command: command,
-      payload: _typeof(payload) === 'object' ? [payload] : payload
-    });
+  
+  saveDialog: function saveDialog(options) {
+    
+      var opts = options || {}
+      if (_typeof(options) === 'object') {
+        opts.default_path = opts.defaultPath
+        Object.freeze(options);
+      }
+      return this.promisified({
+        cmd: 'saveDialog',
+        options: opts
+      });
     
   },
 
@@ -318,6 +405,5 @@ if (document.readyState === 'complete' || document.readyState === 'interactive')
   }, true)
 }
 </script>
-
 
 </body></html>

@@ -1,24 +1,35 @@
 <script>
-  import { PROJECT_NAME, CONTENTS } from '../../stores.js'
+  import { currentProject, contents } from '../../stores.js';
 
-  const createContents = () => {}
+  const createContents = () => {};
+  const listProjects = () => {};
 </script>
 <section>
-  <h1>
-    {$PROJECT_NAME}
-  </h1>
-  <nav class="frame">
-    <h2>CONTENTS</h2>
+  <div class="legend">
+    <h1 class="nowrap">
+      {#if $currentProject} {$currentProject} {:else} No project {/if}
+    </h1>
+    <button class="create-button" on:click="{listProjects}">
+      <img
+        src="svg/file.svg"
+        alt="プロジェクトリスト"
+        title="プロジェクトリスト"
+      />
+    </button>
+  </div>
+
+  <nav class="frame legend">
+    <h2 class="nowrap">CONTENTS</h2>
     <button class="create-button" on:click="{createContents}">+</button>
   </nav>
 
   <div class="contents">
-    {#each $CONTENTS as content}
+    {#if $contents} {#each $contents as content}
     <button class="content-btn">
       <img src="svg/archive.svg" alt="" />
       <p>{content}</p>
     </button>
-    {/each}
+    {/each} {/if}
   </div>
 </section>
 
@@ -40,7 +51,7 @@
     font-weight: 100;
   }
 
-  nav {
+  .legend {
     width: 100%;
     padding: 0.6rem 1.2rem;
     display: flex;

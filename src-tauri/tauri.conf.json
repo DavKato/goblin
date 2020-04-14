@@ -1,7 +1,9 @@
 {
   "build": {
     "distDir": "../public",
-    "devPath": "http://localhost:5000"
+    "devPath": "http://localhost:5000",
+    "beforeDevCommand": "",
+    "beforeBuildCommand": ""
   },
   "ctx": {},
   "tauri": {
@@ -10,6 +12,7 @@
     },
     "bundle": {
       "active": true,
+      "targets": "all",
       "identifier": "com.tauri.dev",
       "icon": [
         "icons/32x32.png",
@@ -19,9 +22,9 @@
         "icons/icon.ico"
       ],
       "resources": [],
-      "externalBin": ["/usr/bin/git"],
+      "externalBin": [],
       "copyright": "",
-      "category": "",
+      "category": "Productivity",
       "shortDescription": "",
       "longDescription": "",
       "deb": {
@@ -37,7 +40,11 @@
       "all": true
     },
     "window": {
-      "title": "Goblin"
+      "title": "GOBLIN",
+      "width": 1000,
+      "height": 800,
+      "resizable": true,
+      "fullscreen": true
     },
     "security": {
       "csp": "default-src blob: data: filesystem: ws: http: https: 'unsafe-eval' 'unsafe-inline'"

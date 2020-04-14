@@ -13,4 +13,7 @@ fn main() {
 }
 
 #[cfg(not(windows))]
-fn main() {}
+fn main() {
+  println!("cargo::rustc-env=CONFIG_FILE_NAME=gob.config.json");
+  // std::env::set_var("CONFIG_FILE_NAME", "gob.config.json");
+}

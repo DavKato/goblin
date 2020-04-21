@@ -1,5 +1,5 @@
 <script>
-  import { getError } from './helpers/messenger.js';
+  import { getError, query } from './helpers/messenger.js';
   import MessageBoard from './components/Modal/MessageBoard.svelte';
   import NewProject from './components/Modal/NewProject.svelte';
   import EditorMode from './components/EditorMode.svelte';
@@ -13,6 +13,7 @@
 
 <nav class="frame">
   <button on:click="{getError}">send error</button>
+  <button on:click="{query}">query</button>
   <button on:click="{toggleModes}">toggle mode</button>
 </nav>
 

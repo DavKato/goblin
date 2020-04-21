@@ -12,4 +12,5 @@ pub enum Cmd {
     callback: String,
     error: String,
   },
+  TestQuery,
 }

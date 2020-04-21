@@ -5,14 +5,14 @@ export const messenger = async (payload, informSuccess = false) => {
     const res = await window.tauri.promisified(payload);
 
     if (informSuccess) {
-      const message = res.message || res;
-      success.set(message);
+      success.set(res);
     }
     console.log(`success response from Rust: ${JSON.stringify(res)}`);
-
     return res;
-  } catch (err) {
-    console.log(`error response from Rust: ${JSON.stringify(err)}`);
+  } catch (e) {
+    const err = JSON.parse(e);
+    console.log(`error response from Rust. Operation: ${err.operation}`);
+    console.log(`error response from Rust. err: ${err.err}`);
     error.set(err);
     return null;
   }
@@ -20,6 +20,12 @@ export const messenger = async (payload, informSuccess = false) => {
 
 export const getError = () => {
   messenger({
-    cmd: 'getError'
+    cmd: 'getError',
+  });
+};
+
+export const query = () => {
+  window.tauri.invoke({
+    cmd: 'testQuery',
   });
 };

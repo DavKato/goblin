@@ -1,16 +1,25 @@
 <script>
   import { error, success } from '../../stores.js';
+  import { reportError } from '../../helpers/http.js';
   import Modal from '../Modal/Modal.svelte';
   import Button from '../Unit/Button.svelte';
 
   const ignore = () => {
-    $error = '';
+    $error = {};
+  };
+
+  const report = async () => {
+    const res = reportError($error);
+    if (res.ok) {
+      $success = '送信';
+    }
+    $error = {};
   };
 
   $: if ($success) setTimeout(() => ($success = ''), 2000);
 </script>
 
-{#if $error}
+{#if $error.operation}
 <Modal>
   <div class="error">
     <p>
@@ -23,12 +32,12 @@
   <fieldset>
     <legend>エラー内容</legend>
     <div class="message">
-      {$error}
+      {$error.operation}に失敗しました。
     </div>
   </fieldset>
 
   <div class="btns">
-    <Button color="red">
+    <Button color="red" on:click="{report}">
       おい！（報告する）
     </Button>
     <Button css="margin-left: 100px;" on:click="{ignore}">
@@ -39,7 +48,7 @@
 {:else if $success}
 <Modal>
   <div class="success">
-    {$success}
+    {$success}に成功しました。
   </div>
 </Modal>
 {/if}

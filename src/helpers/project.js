@@ -1,18 +1,17 @@
-import { currentProject, projectList, newProject } from '../stores';
+import { CONFIG, projectList, newProject } from '../stores';
 import { messenger } from './messenger';
 
 export const createProject = (name) => {
-  console.log(name);
+  projectList.update((projects) => projects.add(name));
 
-  projectList.update((projects) => projects.push(name));
-  currentProject.set(name);
+  CONFIG.set({ ...CONFIG, currentProject: name });
 
   messenger(
     {
       cmd: 'createProject',
-      project_name: name
+      project_name: name,
     },
-    true
+    true,
   );
 
   newProject.set(false);

@@ -6,6 +6,7 @@
   import X from '../Unit/X.svelte';
 
   let projectName = '';
+  $: if ($newProject) projectName = '';
 </script>
 
 {#if $newProject}

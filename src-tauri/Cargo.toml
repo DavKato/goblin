@@ -13,6 +13,8 @@ build = "src/build.rs"
 serde_json = "1.0"
 serde = { version = "1.0", features = [ "derive", "rc" ] }
 tauri = { version = "0.5", features = [ "all-api", "edge" ] }
+rusqlite = { version = "0.22", features = [ "bundled" ] }
+dotenv = "0.15"
 
 [target."cfg(windows)".build-dependencies]
 winres = "0.1"

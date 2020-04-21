@@ -1,11 +1,11 @@
 <script>
-  import { currentProject } from '../../stores.js';
+  import { CONFIG } from '../../stores.js';
   import Balloon from '../Modal/Balloon.svelte';
 
   export let itemList = [''];
 </script>
 <section>
-  {#if $currentProject} ITEM LIST {:else}
+  {#if $CONFIG.currentProject} ITEM LIST {:else}
   <Balloon on:click></Balloon>
   {/if}
 </section>

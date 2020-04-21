@@ -35,12 +35,6 @@ fn desktop_dir() -> PathBuf {
   path::desktop_dir().unwrap()
 }
 
-pub fn get_config_path() -> PathBuf {
-  let file_name = std::env::var("CONFIG_FILE_NAME").unwrap();
-  let path: Option<&str> = Some(&file_name);
-  get_path(Directory::Data, path)
-}
-
 pub fn create_project(project_name: &str) -> io::Result<()> {
   let path = get_path(Directory::Data, Some(project_name));
   fs::create_dir_all(path)

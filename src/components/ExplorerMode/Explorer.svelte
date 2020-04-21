@@ -1,5 +1,5 @@
 <script>
-  import { currentProject, contents } from '../../stores.js';
+  import { CONFIG, contents } from '../../stores.js';
 
   const createContents = () => {};
   const listProjects = () => {};
@@ -7,7 +7,8 @@
 <section>
   <div class="legend">
     <h1 class="nowrap">
-      {#if $currentProject} {$currentProject} {:else} No project {/if}
+      {#if $CONFIG.currentProject} {$CONFIG.currentProject} {:else} No project
+      {/if}
     </h1>
     <button class="create-button" on:click="{listProjects}">
       <img

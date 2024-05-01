@@ -20,5 +20,4 @@
 
 - GitHub integration for non technical people (Automatic git push on export).
 
-It is going to be super fast..
-But the development speed is pretty slow :D
+update: Well this side project was abandoned pretty quickly since I got occupied with a new job back then :D
